@@ -1,5 +1,6 @@
 package org.compPL1;
 
+import java.util.Collections;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -34,15 +35,12 @@ public class GeneradorDeCadenas {
                 return;
             }
 
-            /*
-            for (int i = 0; i < alfabeto.size(); i++) {
-            Character simbolo = alfabeto.get(random.nextInt(alfabeto.size()));
-            Integer estadoSiguiente = AFD.getMatriz().get(estado).get(simbolo);
-             */
-
+            // Desordena el alfabeto para generar variantes cuando encuentra una clausura
+            List<Character> alfabeto_aux = AFD.getAlfabeto();
+            Collections.shuffle(alfabeto_aux);
 
             // Explorar todas las transiciones posibles desde el estado actual
-            for (Character simbolo : AFD.getAlfabeto()) {
+            for (Character simbolo : alfabeto_aux) {
                 Integer estadoSiguiente = AFD.getMatriz().get(estado).get(simbolo);
                 if (estadoSiguiente != null) {
                     // Avanzar con el símbolo actual
